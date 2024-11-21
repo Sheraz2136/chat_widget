@@ -1,0 +1,788 @@
+function CreateWhatsappChatWidget(
+  option = {
+    brandSetting: {
+      backgroundColor: "#0a5f54",
+      borderRadius: "25",
+      brandImg: "",
+      iconImgUrl: "",
+      brandQr: null,
+      welcomeText: "Hi, there! \nHow can I help you?",
+      phoneNumber: "85252859384",
+      fbMessenger: "85252859384",
+      title: "Contact Us",
+      instaUser: "eoceantest",
+    },
+    chatButtonSetting: {
+      backgroundColor: "#4dc247",
+      borderRadius: "25",
+      marginLeft: "0",
+      marginRight: "20",
+      marginBottom: "20",
+      position: "right",
+      iconColor: "#fff",
+    },
+    enabled: false,
+  }
+) {
+  if (option.enabled == false) {
+    return 1;
+  }
+  if (!option.chatButtonSetting.position) {
+    option.chatButtonSetting.position = "right";
+    option.chatButtonSetting.marginBottom = "20";
+    option.chatButtonSetting.marginLeft = "0";
+    option.chatButtonSetting.marginRight = "20";
+  }
+  var css = document.createElement("STYLE");
+  if (window.jQuery) {
+    initWidget();
+  } else {
+    var script = document.createElement("SCRIPT");
+    script.src =
+      "https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js";
+    script.type = "text/javascript";
+    script.onload = function () {
+      initWidget();
+    };
+    document.getElementsByTagName("head")[0].appendChild(script);
+  }
+  function initWidget() {
+    if (option.brandSetting.messageText) {
+      option.brandSetting.messageText =
+        option.brandSetting.messageText.replaceAll(
+          "{{page_link}}",
+          encodeURIComponent(window.location.href)
+        );
+      option.brandSetting.messageText =
+        option.brandSetting.messageText.replaceAll(
+          "{{page_title}}",
+          jQuery("title").text()
+        );
+    }
+
+    const instaUser =
+      option.brandSetting.instaUser && option.brandSetting.instaUser !== ""
+        ? option.brandSetting.instaUser.replace(/\+/g, "")
+        : "#";
+    const hrefValueInsta = `https://www.instagram.com/${instaUser}`;
+
+    const facebookUser =
+      option.brandSetting.fbMessenger && option.brandSetting.fbMessenger !== ""
+        ? option.brandSetting.fbMessenger.replace(/\+/g, "")
+        : "#";
+    const hrefValueFacebook = `https://www.messenger.com/t/${facebookUser}`;
+
+    const whatsappUser =
+      option.brandSetting.phoneNumber && option.brandSetting.phoneNumber !== ""
+        ? option.brandSetting.phoneNumber.replace(/\+/g, "")
+        : "#";
+    const hrefValueWhatsapp = `https://api.whatsapp.com/send?phone=${whatsappUser}`;
+
+    if (option.brandSetting.iconImgUrl == "svg1") {
+      jQuery("body")
+        .append(`<div id="whatsapp_chat_widget" class="styles_wrapper__d7uG7 toggleWidget">
+        <div class="greetingHolder"><div id="greetingTextHolder" class="m-0">${option.brandSetting.welcomeText}</div></div>
+																	<div class="styles_wrapper__2J-67">
+																	<svg id="svg1" width="32px" height="32px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" class="icon">
+  <path style="fill: ${option.chatButtonSetting.iconColor};" d="M924.3 338.4a447.57 447.57 0 0 0-96.1-143.3 443.09 443.09 0 0 0-143-96.3A443.91 443.91 0 0 0 512 64h-2c-60.5.3-119 12.3-174.1 35.9a444.08 444.08 0 0 0-141.7 96.5 445 445 0 0 0-95 142.8A449.89 449.89 0 0 0 65 514.1c.3 69.4 16.9 138.3 47.9 199.9v152c0 25.4 20.6 46 45.9 46h151.8a447.72 447.72 0 0 0 199.5 48h2.1c59.8 0 117.7-11.6 172.3-34.3A443.2 443.2 0 0 0 827 830.5c41.2-40.9 73.6-88.7 96.3-142 23.5-55.2 35.5-113.9 35.8-174.5.2-60.9-11.6-120-34.8-175.6zM312.4 560c-26.4 0-47.9-21.5-47.9-48s21.5-48 47.9-48 47.9 21.5 47.9 48-21.4 48-47.9 48zm199.6 0c-26.4 0-47.9-21.5-47.9-48s21.5-48 47.9-48 47.9 21.5 47.9 48-21.5 48-47.9 48zm199.6 0c-26.4 0-47.9-21.5-47.9-48s21.5-48 47.9-48 47.9 21.5 47.9 48-21.5 48-47.9 48z"/>
+</svg>
+
+																	</div>
+																</div>
+																
+																`);
+    } else if (option.brandSetting.iconImgUrl == "svg2") {
+      jQuery("body")
+        .append(`<div id="whatsapp_chat_widget" class="styles_wrapper__d7uG7 toggleWidget">
+        <div class="greetingHolder"><div id="greetingTextHolder" class="m-0">${option.brandSetting.welcomeText}</div></div>
+																	<div class="styles_wrapper__2J-67">
+																	<svg id="svg2" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 458 458" width="32px" height="32px" style="enable-background:new 0 0 458 458;fill: ${option.chatButtonSetting.iconColor};" xml:space="preserve">
+<g>
+	<g>
+		<g>
+			<path d="M428,41.533H30c-16.568,0-30,13.432-30,30v252c0,16.568,13.432,30,30,30h132.1l43.942,52.243
+				c5.7,6.777,14.103,10.69,22.959,10.69c8.856,0,17.259-3.912,22.959-10.689l43.942-52.243H428c16.569,0,30-13.432,30-30v-252
+				C458,54.965,444.569,41.533,428,41.533z M428,323.533H281.933L229,386.465l-52.932-62.932H30v-252h398V323.533z"/>
+			<path d="M85.402,156.999h137c8.284,0,15-6.716,15-15s-6.716-15-15-15h-137c-8.284,0-15,6.716-15,15
+				S77.118,156.999,85.402,156.999z"/>
+			<path d="M71,233.999c0,8.284,6.716,15,15,15h286c8.284,0,15-6.716,15-15s-6.716-15-15-15H86
+				C77.716,218.999,71,225.715,71,233.999z"/>
+		</g>
+	</g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>
+
+																	</div>
+																</div>
+																
+																`);
+    } else if (option.brandSetting.iconImgUrl == "svg3") {
+      jQuery("body")
+        .append(`<div id="whatsapp_chat_widget" class="styles_wrapper__d7uG7 toggleWidget">
+        <div class="greetingHolder"><div id="greetingTextHolder" class="m-0">${option.brandSetting.welcomeText}</div></div>
+																	<div class="styles_wrapper__2J-67">
+																	<svg id="svg3" class="" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 217.762 217.762" width="32px" height="32px" style="enable-background:new 0 0 217.762 217.762;" xml:space="preserve">
+<path style="fill: ${option.chatButtonSetting.iconColor};" d="M108.881,5.334C48.844,5.334,0,45.339,0,94.512c0,28.976,16.84,55.715,45.332,72.454
+	c-3.953,18.48-12.812,31.448-12.909,31.588l-9.685,13.873l16.798-2.153c1.935-0.249,47.001-6.222,79.122-26.942
+	c26.378-1.92,50.877-11.597,69.181-27.364c19.296-16.623,29.923-38.448,29.923-61.455C217.762,45.339,168.918,5.334,108.881,5.334z
+	 M115.762,168.489l-2.049,0.117l-1.704,1.145c-18.679,12.548-43.685,19.509-59.416,22.913c3.3-7.377,6.768-17.184,8.499-28.506
+	l0.809-5.292l-4.741-2.485C30.761,142.547,15,119.42,15,94.512c0-40.901,42.115-74.178,93.881-74.178s93.881,33.276,93.881,74.178
+	C202.762,133.194,164.547,165.688,115.762,168.489z"/>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>
+
+																	</div>
+																</div>
+																
+																`);
+    } else if (option.brandSetting.iconImgUrl == "svg4") {
+      jQuery("body")
+        .append(`<div id="whatsapp_chat_widget" class="styles_wrapper__d7uG7 toggleWidget">
+        <div class="greetingHolder"><div id="greetingTextHolder" class="m-0">${option.brandSetting.welcomeText}</div></div>
+																	<div class="styles_wrapper__2J-67">
+																	<svg id="svg4" width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path style="stroke: #fff;" opacity="0.4" d="M17.2678 8.56104L13.0024 11.9953C12.1952 12.6282 11.0636 12.6282 10.2564 11.9953L5.95435 8.56104" stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path style="stroke: ${option.chatButtonSetting.iconColor};" fill-rule="evenodd" clip-rule="evenodd" d="M6.88787 3H16.3158C17.6752 3.01525 18.969 3.58993 19.896 4.5902C20.823 5.59048 21.3022 6.92903 21.222 8.29412V14.822C21.3022 16.1871 20.823 17.5256 19.896 18.5259C18.969 19.5262 17.6752 20.1009 16.3158 20.1161H6.88787C3.96796 20.1161 2 17.7407 2 14.822V8.29412C2 5.37545 3.96796 3 6.88787 3Z" stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+																	</div>
+																</div>
+																
+																`);
+    } else if (option.brandSetting.iconImgUrl == "svg5") {
+      jQuery("body")
+        .append(`<div id="whatsapp_chat_widget" class="styles_wrapper__d7uG7 toggleWidget">
+        <div class="greetingHolder"><div id="greetingTextHolder" class="m-0">${option.brandSetting.welcomeText}</div></div>
+																	<div class="styles_wrapper__2J-67">
+																	<svg id="svg5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32" class="openBtnIcon"><path fill="${option.chatButtonSetting.iconColor}" fill-rule="evenodd" d="M0 9h13.6c1.326 0 2.4-.895 2.4-2H0V4c0-2.21 1.79-4 4-4h24c2.21 0 4 1.79 4 4v17c0 2.21-1.79 4-4 4h-5v4.282c0 2.195-2.55 3.482-4.404 2.223L9 25H4c-2.21 0-4-1.79-4-4v-3h9.75c1.243 0 2.25-.895 2.25-2H0V9z"></path></svg>
+
+																	</div>
+																</div>
+																
+																`);
+    } else {
+      jQuery("body")
+        .append(`<div id="whatsapp_chat_widget" class="styles_wrapper__d7uG7 toggleWidget">
+        <div class="greetingHolder"><div id="greetingTextHolder" class="m-0">${option.brandSetting.welcomeText}</div></div>
+																	<div class="styles_wrapper__2J-67">
+																	<svg id="svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 217.762 217.762" width="32px" height="32px" style="enable-background:new 0 0 217.762 217.762;" xml:space="preserve">
+<path style="fill: ${option.chatButtonSetting.iconColor};" d="M108.881,5.334C48.844,5.334,0,45.339,0,94.512c0,28.976,16.84,55.715,45.332,72.454
+	c-3.953,18.48-12.812,31.448-12.909,31.588l-9.685,13.873l16.798-2.153c1.935-0.249,47.001-6.222,79.122-26.942
+	c26.378-1.92,50.877-11.597,69.181-27.364c19.296-16.623,29.923-38.448,29.923-61.455C217.762,45.339,168.918,5.334,108.881,5.334z
+	 M115.762,168.489l-2.049,0.117l-1.704,1.145c-18.679,12.548-43.685,19.509-59.416,22.913c3.3-7.377,6.768-17.184,8.499-28.506
+	l0.809-5.292l-4.741-2.485C30.761,142.547,15,119.42,15,94.512c0-40.901,42.115-74.178,93.881-74.178s93.881,33.276,93.881,74.178
+	C202.762,133.194,164.547,165.688,115.762,168.489z"/>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>
+
+																	</div>
+																</div>
+																
+																`);
+    }
+
+    jQuery(".styles_wrapper__2J-67").append(
+      `<svg id="closeSvg" class="closeSvg closeBtnIcon d-none " style="color:${option.chatButtonSetting.iconColor}" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>`
+    );
+    jQuery("body")
+      .append(`<div id="chat-widget-container" class="styles_widget__2g5UX
+  styles_opened__3NvNz d-none">
+  <div style="max-height: 667px;">
+    <main class="styles_widgetContainer__1GpQ0">
+      <div class="styles_header__1c59U" data-testid="home-header">
+        <div class="styles_logoWrapper__3V29E">
+          <div class="styles_logo__1ZE0j" id="companyLogoPlace"><img src="${option.brandSetting.brandImg}" alt="company_logo" class="w-100" style="width: 100%"></div>
+        </div>
+      </div>
+      <div data-testid="widget-home-wrapper" class="styles_homeWrapper__3VIPb">
+        <div>
+          <section class="styles_widgetBody__2PS3E widgetAreaMain">
+            <div class="styles_widgetWrapper__1LyF3">
+              <div class="styles_startScreen__3kFbp">
+                <div class="">
+                  <div id="titleTextPlace">${option.brandSetting.title}</div>
+                  <div>
+                    <a href="#" class="styles_channel__396ZG styles_whatsapp__80fGh" id="wappbutton">
+                      <div class="styles_channelIcon__1i0qs styles_whatsapp__80fGh">
+                       <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 18 17">
+                          <path fill="#FFF" d="M12.976 10.092c-.208-.104-1.227-.603-1.417-.672-.19-.069-.329-.103-.467.103-.138.207-.535.672-.656.81-.121.137-.242.155-.45.051-.207-.103-.875-.32-1.667-1.024-.617-.547-1.033-1.223-1.154-1.43-.12-.206-.012-.318.091-.42.094-.093.208-.242.311-.362.104-.12.139-.207.208-.344.069-.138.034-.259-.018-.362-.051-.103-.466-1.119-.639-1.532-.168-.403-.34-.348-.466-.354-.121-.006-.26-.008-.398-.008s-.363.052-.553.258c-.19.207-.725.706-.725 1.722s.743 1.997.846 2.135c.104.137 1.462 2.222 3.542 3.116.495.212.881.34 1.182.434.497.157.95.135 1.306.082.399-.06 1.227-.499 1.4-.981.173-.482.173-.895.12-.981-.05-.086-.19-.138-.396-.241m-3.784 5.14H9.19c-1.237 0-2.451-.33-3.51-.956l-.252-.149-2.61.682.696-2.533-.164-.26c-.69-1.093-1.055-2.356-1.054-3.653.001-3.785 3.095-6.864 6.9-6.864 1.842 0 3.574.715 4.876 2.013 1.303 1.297 2.02 3.022 2.019 4.856-.002 3.785-3.096 6.865-6.898 6.865m5.87-12.707C13.496.965 11.412.105 9.192.104 4.618.104.895 3.809.894 8.362.893 9.818 1.275 11.24 2 12.492L.824 16.77l4.4-1.149c1.211.658 2.576 1.005 3.965 1.005h.003c4.574 0 8.297-3.705 8.299-8.258 0-2.207-.862-4.282-2.429-5.843"></path>
+                        </svg> -->
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/479px-WhatsApp.svg.png" class="w-100"  style="width: 100%">
+                      </div>
+                      <p class="styles_channelName__Q8vJ4">WhatsApp</p>
+                    </a>
+                    
+                    <a href="${hrefValueFacebook}" class="styles_channel__396ZG styles_facebook__1JafZ" target="_blank" rel="noopener noreferrer">
+                      <div class="styles_channelIcon__1i0qs styles_facebook__1JafZ">
+                        <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                          <path fill="#FFF" fill-rule="evenodd" d="M8 0C3.493 0 0 3.301 0 7.76c0 2.333.956 4.348 2.513 5.74.13.118.209.28.215.456l.044 1.423c.014.454.483.748.898.566l1.587-.7c.135-.06.285-.07.427-.032.729.201 1.506.308 2.316.308 4.507 0 8-3.302 8-7.76C16 3.3 12.507 0 8 0zm4.803 5.97l-2.35 3.728c-.373.593-1.175.74-1.735.32L6.849 8.618c-.172-.13-.407-.128-.578.001l-2.524 1.916c-.336.256-.777-.148-.55-.506L5.547 6.3c.373-.592 1.175-.74 1.735-.32l1.869 1.402c.172.129.407.127.578-.002l2.524-1.915c.336-.256.777.148.55.505z"></path>
+                        </svg> -->
+						<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Facebook_Messenger_logo_2020.svg/2048px-Facebook_Messenger_logo_2020.svg.png" class="w-100"  style="width: 100%">
+																                      
+                      </div>
+                      <p class="styles_channelName__Q8vJ4">Facebook Messenger</p>
+                    </a>
+
+					<a href="${hrefValueInsta}" class="styles_channel__396ZG styles_insta__80fGh" id= "instaText" target="_blank" rel="noopener noreferrer">
+                      <div class="styles_channelIcon__1i0qs styles_insta__80fGh">
+                        <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg> -->
+						<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/2048px-Instagram_logo_2016.svg.png"  style="width: 100%">
+					  </div>
+                      <p class="styles_channelName__Q8vJ4">Instagram</p>
+                    </a>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="styles_widgetBody__2PS3E qrArea">
+		  <div class="styles_widgetWrapper__1LyF3">
+		    <section class="styles_connectChannelWrapper__LI3lB">
+		      <div class="styles_header__1-MXj" id="backtowa">
+		        <div class="styles_goBackLink__1mMU8" role="button" tabindex="0" >
+		          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 9" width="14" height="9">
+		            <title>Go Back Link</title>
+		            <g fill="none" stroke="currentColor" stroke-linecap="square" stroke-width="2">
+		              <path d="M0 4.5L12 4.5M12.5 4.5L8.964.964" transform="matrix(-1 0 0 1 14 0)"></path>
+		              <path d="M12.5 8.5L8.964 4.964" transform="matrix(-1 0 0 1 14 0) matrix(1 0 0 -1 0 13)"></path>
+		            </g>
+		          </svg>
+		        </div>
+		        <h3 class="styles_title__3HfAu">Connect to WhatsApp</h3>
+		      </div>
+		      <div class="styles_extraAction__1X5Ng"><a href="${hrefValueWhatsapp}" class="styles_link__10bJC" target="_blank" rel="noopener noreferrer">Open WhatsApp Web</a></div>
+		      <div style="position: relative; height: 248px; width: 248px;">
+		        <div data-testid="qr-code" style="position: absolute; z-index: 2;">
+		          
+		          <img src="${option.brandSetting.brandQr}" alt="company_logo" style="height: 248px; width: 248px;">
+		        </div>
+		      </div>
+		      <div class="styles_content__3R_vt">
+		        <ol>
+		          <li class="styles_listStyles__1DcOV">Scan the QR code with your phone</li>
+		          <li>WhatsApp will open</li>
+		          <li>Send a message to start a conversation</li>
+		        </ol>
+		      </div>
+		    </section>
+		  </div>
+		</section>
+        </div>
+      </div>
+      <footer class="styles_footer__1DjbU">
+        <div class="styles_footer__2XYQk">
+          <a href="https://eocean.net/" target="_blank" rel="noopener noreferrer" class="styles_footerLink__17d3m">
+            <div class="pwrdBy">Powered by <span class="styles_companyName__1s5d9">E.ocean</span></div>
+          </a>
+        </div>
+      </footer>
+    </main>
+  </div>
+</div>
+        `);
+
+    jQuery(".widgetAreaMain").on("click", "#wappbutton", function () {
+      jQuery(".widgetAreaMain").css("display", "none");
+      jQuery(".qrArea").css("display", "block");
+    });
+
+    jQuery(".qrArea").on("click", "#backtowa", function () {
+      jQuery(".widgetAreaMain").css("display", "block");
+      jQuery(".qrArea").css("display", "none");
+    });
+
+    jQuery(".toggleWidget").click(function () {
+      // jQuery("#chat-widget-container").toggleClass("d-none");
+      // jQuery(".closeBtnIcon").toggleClass("d-none");
+      // jQuery("#svg, #svg1, #svg2, #svg3, #svg4, #svg5").toggleClass("d-none");
+      // jQuery(".greetingHolder").toggleClass("d-none");
+
+      jQuery("#chat-widget-container").toggleClass("d-none");
+      jQuery(".closeBtnIcon").toggleClass("d-none");
+      jQuery("#svg1, #svg2, #svg3, #svg4, #svg5").toggleClass("d-none");
+      jQuery(".greetingHolder").toggleClass("d-none");
+      console.log("onclick running /:::::::");
+    });
+
+    if (option.brandSetting.fbMessenger == "") {
+      jQuery(".styles_facebook__1JafZ").css("display", "none");
+    }
+    if (!option?.brandSetting?.instaUser) {
+      jQuery(".styles_insta__80fGh").css("display", "none");
+    }
+  }
+
+  var styles = `
+        .d-none{
+			display:none;
+		}
+		
+		#svg, #svg1, #svg2, #svg3, #svg4, #svg5{
+		}
+        .styles_wrapper__d7uG7 {
+            position: fixed;
+            z-index: 100;
+            right: 63px;
+            bottom: 50px;
+            box-shadow: 0 0 24px 0 rgb(104 121 146 / 20%);
+            border-radius: 16px;
+        }
+        
+        .styles_wrapper__2J-67 {
+            background-color: ${option.chatButtonSetting.backgroundColor};
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-justify-content: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+            outline: none;
+            box-sizing: border-box;
+            padding-top: 2px;
+            opacity: 1;
+            transition: opacity .1s ease .6s;
+        }
+        .styles_opened__3NvNz {
+            box-shadow: 0 0 24px 0 rgb(104 121 146 / 20%);
+            border-radius: 16px;
+            -webkit-animation: styles_slide-up__1ZeLY .6s ease;
+            animation: styles_slide-up__1ZeLY .6s ease;
+            opacity: 1;
+            pointer-events: all;
+        }
+        .styles_widget__2g5UX {
+            position: fixed;
+            width: 376px;
+            min-height: 250px;
+            max-height: 400px;
+            bottom: 120px;
+            right: 60px;
+            box-sizing: border-box;
+            border-radius: 16px;
+            z-index: 1000;
+            overflow: scroll;
+            overflow-y: auto;
+            overflow-x: hidden;
+            pointer-events: all;
+            
+        }
+        
+        .styles_widgetContainer__1GpQ0 {
+            position: relative;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            background-color: #fff;
+            border-radius: 8px 8px 0 0;
+        }
+        
+        .styles_header__1c59U {
+            position: relative;
+            background-color: ${option.brandSetting.backgroundColor};
+            padding: 40px 32px;
+            color: #fff;
+            height: 205px;
+            min-height: 205px;
+            box-sizing: border-box;
+            border-radius: 8px 8px 0 0;
+        }
+        
+        .styles_logoWrapper__3V29E {
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-justify-content: space-between;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            height: 40px;
+            width: 180px;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+        
+        .styles_logo__1ZE0j {
+            width: 150px;
+        }
+        
+        .styles_homeWrapper__3VIPb {
+            position: relative;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            margin-top: -104px;
+        }
+        
+        .styles_widgetBody__2PS3E {
+            width: 100%;
+            box-sizing: border-box;
+            position: relative;
+            margin-top: 8px;
+            
+        }
+        
+        .styles_widgetWrapper__1LyF3 {
+            position: relative;
+            margin: 0 16px 8px;
+            background-color: #fff;
+            border-radius: 4px;
+            border: 1px solid #f1f3f8;
+            -webkit-animation: styles_slide-up__1ZeLY .6s ease;
+            animation: styles_slide-up__1ZeLY .6s ease;
+        }
+        
+        .styles_startScreen__3kFbp {
+            position: relative;
+            padding: 24px 16px;
+            z-index: 2;
+        }
+        
+        .styles_channel__396ZG.styles_whatsapp__80fGh {
+            border-color: #0089ff;
+        }
+        
+        .styles_channel__396ZG {
+            border-radius: 4px;
+            border: 1px solid #d9e1ec;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            margin-bottom: 8px;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+            padding: 8px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        .styles_channelIcon__1i0qs.styles_whatsapp__80fGh, .styles_whatsapp__80fGh:hover {
+            background-color: #24d366;
+        }
+        
+        .styles_channelIcon__1i0qs {
+             width: 24px;
+    height: 24px;
+    object-fit: contain;
+    border-radius: 4px;
+    border-radius: var(--radius-main);
+    border: 1px solid transparent;
+    background-color: transparent !important;
+    margin-right: 8px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+        }
+        .styles_channelName__Q8vJ4 {
+            font-size: 14px;
+            font-weight: 400;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #283f59;
+            max-width: 260px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            margin: 0;
+        }
+        
+        .styles_footer__1DjbU {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 16px 17px;
+        }
+        
+        .styles_footer__2XYQk {
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-justify-content: flex-end;
+            -ms-flex-pack: end;
+            justify-content: flex-end;
+        }
+        .styles_footerLink__17d3m {
+            text-decoration: none;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+        }
+        
+        .styles_footer__2XYQk p {
+            font-size: 12px !important;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #687992 !important;
+        margin-bottom: 0;}
+        
+        .styles_companyName__1s5d9 {
+            font-weight: 600;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .styles_channel__396ZG.styles_whatsapp__80fGh:hover {
+            border-color: #fff;
+        }
+        
+        .styles_channelIcon__1i0qs.styles_whatsapp__80fGh, .styles_whatsapp__80fGh:hover {
+            background-color: #24d366;
+        }
+        
+        .styles_channel__396ZG:hover .styles_channelName__Q8vJ4 {
+            color: #fff;
+        }
+        
+        .styles_connectChannelWrapper__LI3lB {
+            margin-top: 20px;
+            padding: 20px 40px;
+            overflow: scroll;
+            box-sizing: border-box;
+            background-color: #fff;
+            border-radius: 4px;
+            
+        }
+        
+        .styles_header__1-MXj {
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+            margin-bottom: 18px;
+            margin-left: -22px;
+        }
+        
+        .styles_goBackLink__1mMU8 {
+            cursor: pointer;
+            margin-right: 8px;
+            line-height: 32px;
+            outline: none;
+        }
+        
+        .styles_title__3HfAu {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 0;
+        }
+        
+        .styles_extraAction__1X5Ng {
+            margin-bottom: 12px;
+        }
+        
+        .styles_link__10bJC:hover {
+            background-color: #f1f3f8;
+        }
+        .styles_link__10bJC {
+            display: inline-block;
+            font-weight: 600;
+            border-radius: 4px;
+            
+            border: 1px solid #d9e1ec;
+            text-decoration: none;
+            color: #24374e;
+            
+            font-size: 14px;
+            padding: 9px 12px;
+        }
+        
+        ol {
+            padding-left: 16px;
+        }
+        
+        .styles_channelIcon__1i0qs.styles_facebook__1JafZ, .styles_facebook__1JafZ:hover {
+            background-color: #0084ff;
+        }
+        
+        .styles_channel__396ZG:hover .styles_channelName__Q8vJ4 {
+            color: #fff;
+        }
+        
+        .companyLogoHolder {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding-right: 70px;
+        }
+        .qrArea{
+            display:none;
+        }
+        
+        #titleTextPlace {
+            color: #303130;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-family: inherit;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+        .pwrdBy{
+            font-size: 12px !important;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #687992 !important;
+            margin-bottom: 0;
+        }
+        
+        @media only screen and (max-width: 600px) {
+            .wa-chat-box
+            {
+                width: auto;
+                position: fixed !important;
+                right: 20px!important;
+                left: 20px!important;
+            }
+        }
+        .greetingHolder {
+            position: fixed;
+            right: 140px;
+            padding: 8px 16px;
+            border: 1px solid #d5d5d5;
+            border-radius: 6px;
+            bottom: 60px;
+            box-shadow: 0 14px 28px rgb(0 0 0 / 21%), 0 1px 10px rgb(0 0 0 / 22%);
+            background: #fff !important;
+            color: black !important;
+            display:block;
+        }
+		.styles_channelIcon__1i0qs.styles_insta__80fGh, .styles_insta__80fGh:hover {
+            background-color: #8a3ab9;
+            
+        }
+        .styles_channelIcon__1i0qs.styles_insta__80fGh {
+            color: #fff;
+        }
+        .w-100 {
+			width: 100%
+		}
+        
+        
+    `;
+
+  var styleSheet = document.createElement("style");
+  styleSheet.type = "text/css";
+  styleSheet.innerText = styles;
+  document.getElementsByTagName("head")[0].appendChild(styleSheet);
+}
